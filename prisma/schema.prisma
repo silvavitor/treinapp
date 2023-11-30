@@ -34,9 +34,8 @@ model Exercises {
 model Athletes {
   id           String         @id @default(uuid())
   name         String
-  trainingId   String?
+  trainings    Trainings[]
   ExerciseSets ExerciseSets[]
-  Training     Trainings?     @relation(fields: [trainingId], references: [id])
 }
 
 model TrainingExecution {
