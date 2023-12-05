@@ -12,7 +12,7 @@ datasource db {
 
 model Trainings {
   id                String              @id @default(uuid())
-  name              String
+  name              String              @unique
   exercises         Exercises[]
   athletes          Athletes[]
   TrainingExecution TrainingExecution[]
