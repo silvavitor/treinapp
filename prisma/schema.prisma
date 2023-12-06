@@ -27,7 +27,7 @@ model Exercises {
   trainingId   String
   createdAt    DateTime       @default(now())
   updatedAt    DateTime       @updatedAt
-  Training     Trainings      @relation(fields: [trainingId], references: [id])
+  Training     Trainings      @relation(fields: [trainingId], references: [id], onDelete: Cascade)
   ExerciseSets ExerciseSets[]
 }
 
