@@ -44,7 +44,7 @@ export class AthletesService {
     }
 
     if (!updateAthleteDto.name) {
-      throw new BadRequestException({ error: 'name is required' });
+      throw new BadRequestException({ error: 'athlete name is required' });
     }
 
     const athleteExist = await this.repository.findOne(id);
