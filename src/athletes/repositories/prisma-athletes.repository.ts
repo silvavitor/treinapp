@@ -20,6 +20,9 @@ export class PrismaAthletesRepository implements AthleteRepository {
       orderBy: {
         name: 'asc',
       },
+      include: {
+        trainings: true,
+      },
     });
   }
 
@@ -27,6 +30,9 @@ export class PrismaAthletesRepository implements AthleteRepository {
     return this.prisma.athletes.findFirst({
       where: {
         id,
+      },
+      include: {
+        trainings: true,
       },
     });
   }
