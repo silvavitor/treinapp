@@ -24,10 +24,10 @@ model Exercises {
   id           String         @id @default(uuid())
   name         String
   sets_qtd     Int
-  trainingId   String?
+  trainingId   String
   createdAt    DateTime       @default(now())
   updatedAt    DateTime       @updatedAt
-  Training     Trainings?     @relation(fields: [trainingId], references: [id])
+  Training     Trainings      @relation(fields: [trainingId], references: [id])
   ExerciseSets ExerciseSets[]
 }
 
