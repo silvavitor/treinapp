@@ -11,13 +11,13 @@ datasource db {
 }
 
 model Trainings {
-  id                String              @id @default(uuid())
-  name              String              @unique
+  id                String               @id @default(uuid())
+  name              String               @unique
   exercises         Exercises[]
   athletes          Athletes[]
-  TrainingExecution TrainingExecution[]
-  createdAt         DateTime            @default(now())
-  updatedAt         DateTime            @updatedAt
+  TrainingExecution TrainingExecutions[]
+  createdAt         DateTime             @default(now())
+  updatedAt         DateTime             @updatedAt
 }
 
 model Exercises {
@@ -38,27 +38,26 @@ model Athletes {
   ExerciseSets ExerciseSets[]
 }
 
-model TrainingExecution {
+model TrainingExecutions {
   id             String         @id @default(uuid())
-  date           DateTime
   trainingId     String?
   exercises_sets ExerciseSets[]
   createdAt      DateTime       @default(now())
   updatedAt      DateTime       @updatedAt
-  Training       Trainings?     @relation(fields: [trainingId], references: [id])
+  Training       Trainings?     @relation(fields: [trainingId], references: [id], onDelete: Cascade)
 }
 
 model ExerciseSets {
-  id                  String            @id @default(uuid())
+  id                  String             @id @default(uuid())
   setNumber           Int
   reps                Decimal
   weight              Int
   athletesId          String
   exercisesId         String
   trainingExecutionId String
-  athlete             Athletes          @relation(fields: [athletesId], references: [id])
-  TrainingExecution   TrainingExecution @relation(fields: [trainingExecutionId], references: [id])
-  exercise            Exercises         @relation(fields: [exercisesId], references: [id])
-  createdAt           DateTime          @default(now())
-  updatedAt           DateTime          @updatedAt
+  athlete             Athletes           @relation(fields: [athletesId], references: [id], onDelete: Cascade)
+  TrainingExecution   TrainingExecutions @relation(fields: [trainingExecutionId], references: [id], onDelete: Cascade)
+  exercise            Exercises          @relation(fields: [exercisesId], references: [id], onDelete: Cascade)
+  createdAt           DateTime           @default(now())
+  updatedAt           DateTime           @updatedAt
 }
