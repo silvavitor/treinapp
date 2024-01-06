@@ -20,6 +20,9 @@ export class PrismaExercisesRepository implements ExerciseRepository {
       orderBy: {
         name: 'asc',
       },
+      include: {
+        Training: true,
+      },
     });
   }
 
