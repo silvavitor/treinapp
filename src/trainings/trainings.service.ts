@@ -22,12 +22,6 @@ export class TrainingsService {
       });
     }
 
-    if (createTrainingDto.exercises.length === 0) {
-      throw new BadRequestException({
-        error: 'must have at least one exercise',
-      });
-    }
-
     const trainingExists = await this.repository.findByName(
       createTrainingDto.name,
     );
