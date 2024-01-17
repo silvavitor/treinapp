@@ -78,6 +78,11 @@ export class PrismaTrainingExecutionsRepository
       },
       include: {
         _count: true,
+        training: {
+          select: {
+            name: true,
+          },
+        },
         exercises_sets: {
           select: {
             id: true,
