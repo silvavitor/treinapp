@@ -15,7 +15,7 @@ model Trainings {
   name              String               @unique
   exercises         Exercises[]
   athletes          Athletes[]
-  TrainingExecution TrainingExecutions[]
+  trainingExecution TrainingExecutions[]
   createdAt         DateTime             @default(now())
   updatedAt         DateTime             @updatedAt
 }
@@ -28,14 +28,14 @@ model Exercises {
   createdAt    DateTime       @default(now())
   updatedAt    DateTime       @updatedAt
   Training     Trainings      @relation(fields: [trainingId], references: [id], onDelete: Cascade)
-  ExerciseSets ExerciseSets[]
+  exerciseSets ExerciseSets[]
 }
 
 model Athletes {
   id           String         @id @default(uuid())
   name         String
   trainings    Trainings[]
-  ExerciseSets ExerciseSets[]
+  exerciseSets ExerciseSets[]
 }
 
 model TrainingExecutions {
@@ -44,7 +44,7 @@ model TrainingExecutions {
   exercises_sets ExerciseSets[]
   createdAt      DateTime       @default(now())
   updatedAt      DateTime       @updatedAt
-  Training       Trainings?     @relation(fields: [trainingId], references: [id], onDelete: Cascade)
+  training       Trainings?     @relation(fields: [trainingId], references: [id], onDelete: Cascade)
 }
 
 model ExerciseSets {
@@ -56,7 +56,7 @@ model ExerciseSets {
   exercisesId         String
   trainingExecutionId String
   athlete             Athletes           @relation(fields: [athletesId], references: [id], onDelete: Cascade)
-  TrainingExecution   TrainingExecutions @relation(fields: [trainingExecutionId], references: [id], onDelete: Cascade)
+  trainingExecution   TrainingExecutions @relation(fields: [trainingExecutionId], references: [id], onDelete: Cascade)
   exercise            Exercises          @relation(fields: [exercisesId], references: [id], onDelete: Cascade)
   createdAt           DateTime           @default(now())
   updatedAt           DateTime           @updatedAt
