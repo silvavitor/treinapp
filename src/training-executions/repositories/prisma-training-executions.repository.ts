@@ -111,7 +111,31 @@ export class PrismaTrainingExecutionsRepository
         id,
       },
       include: {
-        exercises_sets: true,
+        _count: true,
+        training: {
+          select: {
+            name: true,
+          },
+        },
+        exercises_sets: {
+          select: {
+            id: true,
+            setNumber: true,
+            reps: true,
+            weight: true,
+            athlete: {
+              select: {
+                name: true,
+              },
+            },
+            exercise: {
+              select: {
+                id: true,
+                name: true,
+              },
+            },
+          },
+        },
       },
     });
   }
