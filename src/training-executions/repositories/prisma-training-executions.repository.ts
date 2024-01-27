@@ -135,6 +135,16 @@ export class PrismaTrainingExecutionsRepository
               },
             },
           },
+          orderBy: [
+            {
+              setNumber: 'asc',
+            },
+            {
+              athlete: {
+                name: 'asc',
+              },
+            },
+          ],
         },
       },
     });
